@@ -14,8 +14,7 @@ public class ProductMapRepository implements ProductRepository{
     Long productId = 1L;
 
     @Override
-    public Product save(String name, Long price) {
-        Product product = new Product(name,price);
+    public Product save(Product product) {
         db.put(productId++,new ArrayList<>());
         db.get(productId-1).add(product);
         return product;
