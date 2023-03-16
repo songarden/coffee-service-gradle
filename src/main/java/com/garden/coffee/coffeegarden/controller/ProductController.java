@@ -1,6 +1,7 @@
 package com.garden.coffee.coffeegarden.controller;
 
 
+import com.garden.coffee.coffeegarden.entity.Category;
 import com.garden.coffee.coffeegarden.entity.Product;
 import com.garden.coffee.coffeegarden.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,9 @@ public class ProductController {
     ProductService productService;
 
     @RequestMapping("/save")
-    public Product save(@RequestParam("name") String name, @RequestParam("price") Long price){
-        return productService.save(name,price);
+    public Product save(@RequestParam("name") String name, @RequestParam("price") Long price, @RequestParam("category")Category category,@RequestParam("sale")Long sale){
+        Product product = new Product(name, price, category, sale);
+        return productService.save(product);
     }
 
     @RequestMapping("/search")
