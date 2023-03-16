@@ -1,6 +1,7 @@
 package com.garden.coffee.coffeegarden.service;
 
 
+import com.garden.coffee.coffeegarden.entity.Category;
 import com.garden.coffee.coffeegarden.entity.Product;
 import com.garden.coffee.coffeegarden.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,8 @@ public class ProductService {
     ProductRepository productRepository;
 
 
-    public Product save(String name, Long price){
-        return productRepository.save(name,price);
+    public Product save(Product product){
+        return productRepository.save(product);
     }
 
     public ArrayList<Product> search(Long productId){
