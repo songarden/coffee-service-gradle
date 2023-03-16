@@ -7,6 +7,6 @@ import java.util.ArrayList;
 
 public interface ProductRepository {
 
-    abstract Product save(String name, Long price);
+    abstract Product save(Product product);
     abstract ArrayList<Product> search(Long productId);
 }
