@@ -1,7 +1,7 @@
 package com.garden.coffee.coffeegarden.entity;
 
-public enum Category {
 
+public enum Category {
     COFFEE,
     DESSERT,
     EXTRA,

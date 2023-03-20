@@ -2,6 +2,7 @@ package com.garden.coffee.coffeegarden.entity;
 
 
 
+
 public class Product {
     public String name;
     public Long price;
