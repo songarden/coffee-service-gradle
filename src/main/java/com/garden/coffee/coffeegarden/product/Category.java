@@ -1,4 +1,4 @@
-package com.garden.coffee.coffeegarden.entity;
+package com.garden.coffee.coffeegarden.product;
 
 
 public enum Category {
