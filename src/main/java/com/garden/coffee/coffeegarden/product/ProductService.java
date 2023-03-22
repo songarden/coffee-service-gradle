@@ -1,13 +1,10 @@
-package com.garden.coffee.coffeegarden.service;
+package com.garden.coffee.coffeegarden.product;
 
 
-import com.garden.coffee.coffeegarden.entity.Category;
-import com.garden.coffee.coffeegarden.entity.Product;
-import com.garden.coffee.coffeegarden.repository.ProductRepository;
+import com.garden.coffee.coffeegarden.product.Product;
+import com.garden.coffee.coffeegarden.product.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 
 @Service
 public class ProductService {
@@ -19,7 +16,7 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public ArrayList<Product> search(Long productId){
+    public Product search(Long productId){
         return productRepository.search(productId);
     }
 }
