@@ -9,14 +9,19 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
-    @PostMapping("/save")
-    public Product save(@RequestParam("name") String name, @RequestParam("price") Long price, @RequestParam("category")Category category,@RequestParam("sale")Long sale){
+    @PostMapping("/products")
+    public Product apiSave(@RequestParam("name") String name, @RequestParam("price") Long price, @RequestParam("category")Category category,@RequestParam("sale")Long sale){
         Product product = new Product(name, price, category, sale);
         return productService.save(product);
     }
 
-    @GetMapping("/search")
-    public Product search(@RequestParam("product-id") Long productId){
+    @GetMapping("/products")
+    public Product apiSearch(@RequestParam("product-id") Long productId){
         return productService.search(productId);
+    }
+
+    @DeleteMapping("/products")
+    public Product apiDelete(@RequestParam("product-id") Long productId){
+        return productService.delete(productId);
     }
 }

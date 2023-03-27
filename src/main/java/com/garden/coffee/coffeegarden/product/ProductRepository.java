@@ -7,4 +7,6 @@ public interface ProductRepository {
 
     abstract Product save(Product product);
     abstract Product search(Long productId);
+
+    abstract Product delete(Long productId);
 }

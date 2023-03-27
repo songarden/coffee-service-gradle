@@ -26,4 +26,11 @@ public class ProductMapRepository implements ProductRepository {
         Product product = db.get(productId);
         return product;
     }
+
+    @Override
+    public Product delete(Long productId) {
+        Product product = db.get(productId);
+        db.remove(productId);
+        return product;
+    }
 }

@@ -18,4 +18,8 @@ public class ProductService {
     public Product search(Long productId){
         return productRepository.search(productId);
     }
+
+    public Product delete(Long productId){
+        return productRepository.delete(productId);
+    }
 }
