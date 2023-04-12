@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="product_table")
+@Table(name="products")
 @Getter
 @NoArgsConstructor
 @Data
@@ -34,5 +34,4 @@ public class Product {
         this.productPrice = productPrice;
         this.salePercent = salePercent;
     }
-
 }

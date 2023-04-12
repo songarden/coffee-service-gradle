@@ -12,7 +12,7 @@ import java.util.function.IntFunction;
 import java.util.stream.Stream;
 
 @NoArgsConstructor
-public class DtoList<E> extends ArrayList implements DataTransferObject, Responseable {
+public class DtoList<E> extends ArrayList implements DataTransferObject, Responseable{
     public <T> DtoList (List<T> anyList){
         for (T elem : anyList){
             this.add(elem);
