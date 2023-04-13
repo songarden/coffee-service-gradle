@@ -10,7 +10,6 @@ public enum ResponseStatus {
     NOT_FOUND("NOT_FOUND", 404),
     OK("OK", 200),
     UNAUTHORIZED("UNAUTHORIZED", 401);
-
     private final String status;
     private final int code;
 

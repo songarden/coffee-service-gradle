@@ -1,13 +1,14 @@
 package com.garden.coffee.coffeegarden.order;
 
 
+import jakarta.persistence.Entity;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
 
-@Entity
+
+//@Entity
 @Getter
 @NoArgsConstructor
 @Data

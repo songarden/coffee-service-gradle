@@ -5,10 +5,10 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name="products")
@@ -23,12 +23,12 @@ public class Product {
     private String productName;
 
     @Column(name="product_price")
-    private Long productPrice;
+    private int productPrice;
     @Column(name="sale_percent")
-    private Long salePercent;
+    private int salePercent;
 
     @Builder
-    public Product(String productId,String productName, Long productPrice, Long salePercent){
+    public Product(String productId,String productName, int productPrice, int salePercent){
         this.productId = productId;
         this.productName = productName;
         this.productPrice = productPrice;

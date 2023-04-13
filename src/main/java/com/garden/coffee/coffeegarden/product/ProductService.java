@@ -5,21 +5,20 @@ import com.garden.coffee.coffeegarden.DtoList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 @Service
 public class ProductService {
     @Autowired
-    ProductJPARepository productRepository;
+    ProductJPARepository productJPARepository;
 
     public DtoList<ProductDto> getAllProduct() {
-        DtoList<ProductDto> gettingProductList = new DtoList<>(productRepository.findAll());
+        DtoList<ProductDto> gettingProductList = new DtoList<>(productJPARepository.findAll());
         return gettingProductList;
     }
     public ProductDto getProduct(String productId){
-        Optional<Product> optProduct = productRepository.findById(productId);
+        Optional<Product> optProduct = productJPARepository.findById(productId);
         if(optProduct.isEmpty()){
             return null;
         }
@@ -29,21 +28,19 @@ public class ProductService {
     }
     public ProductDto save(ProductDto productDto){
         productDto.setProductId(UUID.randomUUID().toString().replace("-",""));
-        productRepository.save(productDto.toEntity());
+        productJPARepository.save(productDto.toEntity());
         return productDto;
     }
 
 
 
     public ProductDto deleteProduct(String productId){
-        Optional<Product> optProduct = productRepository.findById(productId);
+        Optional<Product> optProduct = productJPARepository.findById(productId);
         if(optProduct.isEmpty()){
             return null;
         }
         ProductDto deletingProduct = new ProductDto(optProduct.get());
-        productRepository.deleteById(productId);
+        productJPARepository.deleteById(productId);
         return deletingProduct;
     }
-
-
 }
