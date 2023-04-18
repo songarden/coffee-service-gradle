@@ -25,7 +25,7 @@ public class Product {
     @Column(name="product_price")
     private int productPrice;
     @Column(name="sale_percent")
-    private int salePercent;
+    private int salePercent; //0% (not sale) ~ 100% (for free)
 
     @Builder
     public Product(String productId,String productName, int productPrice, int salePercent){
