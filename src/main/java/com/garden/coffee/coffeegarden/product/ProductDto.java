@@ -38,9 +38,4 @@ public class ProductDto implements DataTransferObject<Product> {
     public Product toEntity() {
         return Product.builder().productId(this.productId).productName(this.productName).productPrice(this.productPrice).salePercent(this.salePercent).build();
     }
-
-    @Override
-    public DataTransferObject<Product> toDto(Product entity) {
-        return null;
-    }
 }

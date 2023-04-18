@@ -26,11 +26,6 @@ public class DtoList<E> extends ArrayList implements DataTransferObject, Respons
     }
 
     @Override
-    public DataTransferObject toDto(Object entity) {
-        return null;
-    }
-
-    @Override
     public Response toResponse(ResponseStatus responseStatus) {
         return Responseable.super.toResponse(responseStatus);
     }
