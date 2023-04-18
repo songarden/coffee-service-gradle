@@ -17,7 +17,8 @@ made by songarden
 - 주문 도메인
   -Primary Key ) String orderId (UUID logic)
   -Long orderPrice (주문 시 설정되있는 sale 값에 대한 price fix 하기 위한 필드값)
-  -String address (배송 주소)
+  -String productName
+- -String address (배송 주소)
   -LocalDateTime orderTime (주문 시간)
   -Enum orderState (주문 상태)
 
