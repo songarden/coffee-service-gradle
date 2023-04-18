@@ -2,14 +2,9 @@ package com.garden.coffee.coffeegarden.product;
 
 
 import com.garden.coffee.coffeegarden.DataTransferObject;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
-import java.security.NoSuchAlgorithmException;
 
 @Getter
 @Setter
