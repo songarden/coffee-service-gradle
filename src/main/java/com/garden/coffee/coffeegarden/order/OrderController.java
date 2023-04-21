@@ -8,13 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/orders")
 public class OrderController {
 
     @Autowired
     OrderService orderService;
 
-    @GetMapping("/orders")
-    public Response<DtoList<OrderDto>> apiGetAllOrders(){
+    @GetMapping("")
+    public Response<DtoList<OrderDto>> search(){
         DtoList<OrderDto> allOrders = orderService.getAllOrders();
         ResponseStatus responseStatus = ResponseStatus.OK;
         if(allOrders == null){
@@ -22,8 +23,8 @@ public class OrderController {
         }
         return new ResponseDto<DtoList<OrderDto>>(responseStatus,allOrders).toResponse();
     }
-    @GetMapping("/orders/order-id")
-    public Response<OrderDto> apiGetOrderByOrderID(@RequestParam("v")String orderId){
+    @GetMapping("/id")
+    public Response<OrderDto> searchByID(@RequestParam("query")String orderId){
         OrderDto searchedOrder = orderService.getOrder(orderId);
         ResponseStatus responseStatus = ResponseStatus.OK;
         if(searchedOrder == null){
@@ -32,8 +33,8 @@ public class OrderController {
         return new ResponseDto<OrderDto>(responseStatus, searchedOrder).toResponse();
     }
 
-    @PostMapping("/orders")
-    public Response<OrderDto> apiCreateOrder(@RequestBody OrderDto orderDto){
+    @PostMapping("")
+    public Response<OrderDto> placeOrder(@RequestBody OrderDto orderDto){
         OrderDto createdOrder = orderService.createOrder(orderDto);
         ResponseStatus responseStatus = ResponseStatus.CREATE_DONE;
         if(createdOrder == null){
@@ -42,8 +43,8 @@ public class OrderController {
         return new ResponseDto<OrderDto>(responseStatus,createdOrder).toResponse();
     }
 
-    @DeleteMapping("/orders/order-id")
-    public Response<OrderDto> apiCancelOrder(@RequestParam String orderId){
+    @DeleteMapping("id")
+    public Response<OrderDto> cancelById(@RequestParam("query") String orderId){
         OrderDto canceledOrder = orderService.deleteOrder(orderId);
         ResponseStatus responseStatus = ResponseStatus.OK;
         if(canceledOrder == null){
@@ -52,8 +53,8 @@ public class OrderController {
         return new ResponseDto<OrderDto>(responseStatus,canceledOrder).toResponse();
     }
 
-    @DeleteMapping("/orders")
-    public Response<DtoList<OrderDto>> apiCancelAllOrders(){
+    @DeleteMapping("")
+    public Response<DtoList<OrderDto>> cancelAll(){
         DtoList<OrderDto> allCanceledOrder = orderService.deleteAllOrder();
         ResponseStatus responseStatus = ResponseStatus.OK;
         if(allCanceledOrder == null){

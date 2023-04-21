@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
+@RequestMapping("/products")
 public class ProductController {
     @Autowired
     ProductService productService;
 
-    @GetMapping("/products")
-    public Response<DtoList<ProductDto>> apiSearchAll(){
+    @GetMapping("") //모든 상품 조회
+    public Response<DtoList<ProductDto>> Search(){
         DtoList<ProductDto> searchingProductList = productService.getAllProduct();
         ResponseStatus responseStatus = ResponseStatus.CREATE_DONE;
         if(searchingProductList == null){
@@ -24,8 +25,8 @@ public class ProductController {
         return new ResponseDto<DtoList<ProductDto>>(responseStatus,searchingProductList).toResponse();
     }
 
-    @GetMapping("/products/product-id")
-    public Response<ProductDto> apiSearch(@RequestParam("v") String productId){
+    @GetMapping("/id") //PK로 상품 조회
+    public Response<ProductDto> searchById(@RequestParam("query") String productId){
         ProductDto searchingProduct = productService.getProduct(productId);
         ResponseStatus responseStatus = ResponseStatus.CREATE_DONE;
         if(searchingProduct == null){
@@ -33,8 +34,19 @@ public class ProductController {
         }
         return new ResponseDto<ProductDto>(responseStatus,searchingProduct).toResponse();
     }
-    @PostMapping("/products")
-    public Response<ProductDto> apiSave(@RequestBody ProductDto productDto){
+
+    @GetMapping("/name")
+    public Response<ProductDto> searchByName(@RequestParam("query") String productName){
+        ProductDto searchingProductName = productService.getProductByProductName(productName);
+        ResponseStatus responseStatus = ResponseStatus.OK;
+        if(searchingProductName == null){
+            responseStatus = ResponseStatus.NOT_FOUND;
+        }
+        return new ResponseDto<ProductDto>(responseStatus, searchingProductName).toResponse();
+    }
+
+    @PostMapping("")
+    public Response<ProductDto> register(@RequestBody ProductDto productDto){
         ProductDto savingProduct = productService.save(productDto);
         ResponseStatus responseStatus = ResponseStatus.CREATE_DONE;
         if(savingProduct == null){
@@ -43,8 +55,8 @@ public class ProductController {
         return new ResponseDto<ProductDto>(responseStatus,savingProduct).toResponse();
     }
 
-    @DeleteMapping("/products/product-id")
-    public Response<ProductDto> apiDelete(@RequestParam("v") String productId){
+    @DeleteMapping("/id")
+    public Response<ProductDto> deleteById(@RequestParam("query") String productId){
         ProductDto deletingProduct = productService.deleteProduct(productId);
         ResponseStatus responseStatus = ResponseStatus.CREATE_DONE;
         if(deletingProduct == null){
