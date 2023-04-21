@@ -1,16 +1,16 @@
 package com.garden.coffee.coffeegarden.order;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.garden.coffee.coffeegarden.product.Product;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -27,8 +27,8 @@ public class Order {
     @Column(name="order_price")
     private int orderPrice;
 
-    @Column(name="product_name")
-    private String productName;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Product> products = new ArrayList<>();
 
     @Column(name="address")
     private String address;
@@ -40,10 +40,10 @@ public class Order {
     private OrderState orderState;
 
     @Builder
-    public Order(String orderId, int orderPrice, String productName, String address, LocalDateTime orderTime, OrderState orderState) {
+    public Order(String orderId, int orderPrice, List<Product> products, String address, LocalDateTime orderTime, OrderState orderState) {
         this.orderId = orderId;
         this.orderPrice = orderPrice;
-        this.productName = productName;
+        this.products = products;
         this.address = address;
         this.orderTime = orderTime;
         this.orderState = orderState;

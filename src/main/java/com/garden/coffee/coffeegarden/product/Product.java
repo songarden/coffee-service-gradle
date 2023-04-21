@@ -1,14 +1,10 @@
 package com.garden.coffee.coffeegarden.product;
 
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 @Entity
 @Table(name="products")
@@ -21,7 +17,6 @@ public class Product {
     private String productId;
     @Column(name="product_name")
     private String productName;
-
     @Column(name="product_price")
     private int productPrice;
     @Column(name="sale_percent")
