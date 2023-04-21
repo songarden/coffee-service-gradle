@@ -11,14 +11,14 @@ import java.util.UUID;
 @Service
 public class ProductService {
     @Autowired
-    ProductJPARepository productJPARepository;
+    ProductRepository productRepository;
 
     public DtoList<ProductDto> getAllProduct() {
-        DtoList<ProductDto> gettingProductList = new DtoList<>(productJPARepository.findAll());
+        DtoList<ProductDto> gettingProductList = new DtoList<>(productRepository.findAll());
         return gettingProductList;
     }
     public ProductDto getProduct(String productId){
-        Optional<Product> optProduct = productJPARepository.findById(productId);
+        Optional<Product> optProduct = productRepository.findById(productId);
         if(optProduct.isEmpty()){
             return null;
         }
@@ -26,18 +26,27 @@ public class ProductService {
         return gettingProduct;
 
     }
+    public ProductDto getProductByProductName(String productName) {
+        Optional<Product> optProduct = productRepository.findByProductName(productName);
+        if(optProduct.isEmpty()){
+            return null;
+        }
+        ProductDto searchingProduct = new ProductDto(optProduct.get());
+        return searchingProduct;
+    }
     public ProductDto save(ProductDto productDto){
         productDto.setProductId(UUID.randomUUID().toString().replace("-",""));
-        productJPARepository.save(productDto.toEntity());
+        productRepository.save(productDto.toEntity());
         return productDto;
     }
+
     public ProductDto deleteProduct(String productId){
-        Optional<Product> optProduct = productJPARepository.findById(productId);
+        Optional<Product> optProduct = productRepository.findById(productId);
         if(optProduct.isEmpty()){
             return null;
         }
         ProductDto deletingProduct = new ProductDto(optProduct.get());
-        productJPARepository.deleteById(productId);
+        productRepository.deleteById(productId);
         return deletingProduct;
     }
 }
