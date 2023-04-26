@@ -1,17 +1,13 @@
 package com.garden.coffee.coffeegarden.product;
 
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 @Entity
-@Table(name="product_table")
+@Table(name="products")
 @Getter
 @NoArgsConstructor
 @Data
@@ -21,18 +17,16 @@ public class Product {
     private String productId;
     @Column(name="product_name")
     private String productName;
-
     @Column(name="product_price")
-    private Long productPrice;
+    private int productPrice;
     @Column(name="sale_percent")
-    private Long salePercent;
+    private int salePercent; //0% (not sale) ~ 100% (for free)
 
     @Builder
-    public Product(String productId,String productName, Long productPrice, Long salePercent){
+    public Product(String productId,String productName, int productPrice, int salePercent){
         this.productId = productId;
         this.productName = productName;
         this.productPrice = productPrice;
         this.salePercent = salePercent;
     }
-
 }
